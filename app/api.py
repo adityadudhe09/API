@@ -7,10 +7,10 @@ url = "https://ipinfo.io/json"
 
 response = requests.get(url)
 
-format_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
 
 data = {
-    'timestamp': format_time,
+    'timestamp': timestamp,
     'ip_data': response.json()
 }
 
