@@ -41,6 +41,8 @@ build-image:
   stage: build-image
   image: docker:19.03.1
   script:
+    - docker rm $(docker ps -aq)
+    - kill -9 5432
     - docker run --name ip-postgres -e POSTGRES_DB=iptracker -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:13
     - docker ps
   needs:
