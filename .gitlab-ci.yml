@@ -36,6 +36,7 @@ build-image:
   stage: build-image
   image: docker:19.03.1
   script:
+    - docker ps -a
     - docker stop $(docker ps -aq)
     - docker rm $(docker ps -aq)
     - kill -9 5432
