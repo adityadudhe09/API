@@ -4,6 +4,14 @@ workflow:
 stages:
   - fetch
 
+variables:
+  POSTGRES_DB: iptracker
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+services:
+  - postgres:13
+  
 build-job:
   stage: fetch
   image: python:3.9
