@@ -35,14 +35,14 @@ cur.execute("""
 """)
 
 cur.execute("""
-    INSERT INTO ip_logs (timestamp, ip, country, city, ISP)
-    VALUES (%s,%s,%s,%s,%s)
+    INSERT INTO ip_logs (timestamp, ip, country, city, org)
+    VALUES (%s, %s, %s, %s, %s)
 """, (
     timestamp,
-    ip_data.get('ip'),
-    ip_data.get('country'),
-    ip_data.get('city'),
-    ip_data.get('org')
+    ip_data.get("ip"),
+    ip_data.get("country"),
+    ip_data.get("city"),
+    ip_data.get("org")
 ))
 
 conn.commit()
