@@ -3,6 +3,7 @@ workflow:
 
 stages:
   - fetch
+  - build-image
 
 variables:
   POSTGRES_DB: iptracker
@@ -24,8 +25,22 @@ build-job:
     - python api.py
     - ./log_ip.sh
     - cat ip_log.txt
+  # after_script:
+  #   - docker run --name ip-postgres -e POSTGRES_DB=iptracker -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:13
+  #   - docker ps
+  #   - docker exec -it ip-postgres psql -U postgres -d iptracker
+  #   - SELECT * FROM ip_logs;
   artifacts:
       paths:
         - app/ip.json
         - app/fetched_details.txt
         - app/ip_log.txt  
+
+build-image:
+  stage: build-image
+  before_script:
+    - apt install docker.io
+  script:
+    - docker run --name ip-postgres -e POSTGRES_DB=iptracker -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:13
+    - docker ps
+    - docker exec -it ip-postgres psql -U postgres -d iptracker
