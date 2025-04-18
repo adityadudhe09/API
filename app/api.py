@@ -36,7 +36,7 @@ cur.execute("""
 """)
 
 cur.execute("""
-    INSERT INTO ip_logs (timestamp, ip, country, city, org)
+    INSERT INTO ip_logs (timestamp, ip, country, city, ISP)
     VALUES (%s, %s, %s, %s, %s)
 """, (
     timestamp,
