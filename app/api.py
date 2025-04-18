@@ -8,10 +8,11 @@ url = "https://ipinfo.io/json"
 response = requests.get(url)
 
 timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+ip_data = response.json()
 
 data = {
     'timestamp': timestamp,
-    'ip_data': response.json()
+    'ip_data': ip_data
 }
 
 conn = psycopg2.connect(
